@@ -78,7 +78,19 @@ console.log(person1) --> {'name':'Vittal'};
 
 @@@@@@@@@@@@@@@@@@@@ REACTJS @@@@@@@@@@@@@@@@@@@@@
 --> create react app npm tool like ng cli to create react application 
+--> 
 
 Course Name: JSX Restrictions
+
+Props: are allow to pass data from parent(wrapping) component to child(embeded) component 
+State: State will change the component well state from within, chaning the state will also trigger the UI update 
+-->State can accessed within the class based component because it is react property 
+---------------------------------------------------------
+CLICK EVENT : If you use parenthesis () in the click event in the component , by default react will fire the event 
+--> as part of DOM rendering instead () , we just have to assign a reference of method as shown below 
+<button onClick={this.clickEventName}></button>
+but not like 
+<button onClick={this.clickEventName()}></button>
+
 
 
