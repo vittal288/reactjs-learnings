@@ -7,66 +7,99 @@ import Person from './Person/Person';
 class App extends Component {
   state = {
     persons: [
-      { name: 'Vittal', age: 28 },
-      { name: 'Sandy', age: 29 },
-      { name: 'Harsha', age: 30 }
+      { id:'adasd', name: 'Vittal', age: 28 },
+      { id:'24eds',name: 'Sandy', age: 29 },
+      { id:'eqweqew',name: 'Harsha', age: 30 }
     ],
-
-    'someOtherState':'Some Other state'
+    showPersons: false,
+    'someOtherState': 'Some Other state'
   };
 
-
-  // assigning an event handler to a button 
-  switchNameHandler = (newName) =>{
-   //  console.log('was clicked');
-   // DONT USE LIKE THIS, do not mutate the state like this , this.state.persons[0].name ='Vittal Kamakr';
-   this.setState({
-    persons: [
-      { name: newName, age: 28 },
-      { name: 'Sandy', age: 29 },
-      { name: 'Harsha', age: 30 }
-    ]
-   })
-  };
 
   // react will pass the event object to this method 
-  nameChangedHandler = (event)=>{
+  nameChangedHandler = (event,id) => {
+    const personIndex = this.state.persons.findIndex((person)=>{
+      // if(person.id === id) {
+      //   return person['id']
+      // }
+      return person.id === id;
+    });
+
+    console.log('person index', personIndex);
+
+    // findout exact object needs to be update and create a copy of it 
+    const person = {...this.state.persons[personIndex]};
+    // OR
+    // const person = Object.assign({}, this.state.persons[personIndex]);
+    person.name = event.target.value;
+    // create ad copy of original person array 
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState({persons:persons});
+  };
+
+  tooglePersonHandler = () => {
     this.setState({
-      persons: [
-        { name: 'Vittal', age: 28 },
-        { name: 'Sandy', age: 29 },
-        { name: event.target.value, age: 30 }
-      ]
+      showPersons: !this.state.showPersons
     })
   };
 
+  deletePersonHandler = (personIndex) =>{
+    // this following method as flaw, because ARRAY and OBJECT are reference type or pointer 
+    // --> so in below line of code we mutating the original array of persons by updating the same, hence we are updating the state of it 
+    // --> to avoid mutating, we have to create copy of persons, as shown in 2nd approach('New Method')
+    // const persons = this.state.persons;
+    // persons.splice(personIndex, 1);
+    // console.log('Orginal Person array' , this.state.persons);
+    // this.setState({
+    //   persons:persons
+    // });
 
+
+
+    // @@@ New method 
+    // const persons  = this.state.persons.slice();// ES 5, to copy the array 
+    const persons = [...this.state.persons]; // ES 6 , spread operator will iterate through each array object and bind it into new array 
+    persons.splice(personIndex,1);
+    console.log('Orginal Person array' , this.state.persons);
+    this.setState({persons:persons});
+  }
+
+  // whenever state updates, react will re render this method 
   render() {
-    const styleConstName ={
-      backgroundColor:'white',
-      border:'1px solid #ccc',
-      padding:'10px',
-      color:'black',
-      cursor:'pointer'
+    const styleConstName = {
+      backgroundColor: 'white',
+      border: '1px solid #ccc',
+      padding: '10px',
+      color: 'black',
+      cursor: 'pointer'
+    }
+
+
+    let persons = null;
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          {this.state.persons.map((person,index) => {
+            return <Person 
+                      click={ () => this.deletePersonHandler(index)}
+                      name={person.name} 
+                      age={person.age}
+                      key={person.id}
+                      changeCustomName={(event)=>this.nameChangedHandler(event, person.id)}/>
+          })}        
+        </div>
+      );
     }
     return (
       <div className="App">
         <h1>I am react App</h1>
-        <p>This is really working</p>
-        <button 
+        <p>This is really working</p>        
+        <button
           style={styleConstName}
-          onClick={() => this.switchNameHandler('Vittal Kamkar')}>Switch Name !</button>
-        <Person 
-            age={this.state.persons[0].age} 
-            name={this.state.persons[0].name} />
-        <Person   
-            age={this.state.persons[1].age} 
-            name={this.state.persons[1].name} />
-        <Person 
-            age={this.state.persons[2].age} 
-            name={this.state.persons[2].name} 
-            clickCustomName={this.switchNameHandler.bind(this,'Vittal ###123')}
-            changeCustomName={this.nameChangedHandler}> My Hobbies: Racing</Person>
+          onClick={this.tooglePersonHandler}>Show Persons</button>
+          {persons}
       </div>
     );
     // return React.createElement('div', {className:'App'}, React.createElement('h1', null, 'I am react App'));
