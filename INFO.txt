@@ -92,5 +92,10 @@ CLICK EVENT : If you use parenthesis () in the click event in the component , by
 but not like 
 <button onClick={this.clickEventName()}></button>
 
+---------------------------------------------------
+@@@@ RADIUM @@@@@
+Radium: Popular JS library for ReactJS to write in line styling with psedo selector and media queries
+--> we have to wrap a entite App component inside the <StyleRoot> component, if we planned to use media queries and keyprames through inline styling 
+
 
 

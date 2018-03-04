@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // here React is complete class but Component is object or constant 
+import Radium, {StyleRoot} from 'radium';
 
 import './App.css';
 import Person from './Person/Person';
@@ -24,8 +25,6 @@ class App extends Component {
       // }
       return person.id === id;
     });
-
-    console.log('person index', personIndex);
 
     // findout exact object needs to be update and create a copy of it 
     const person = {...this.state.persons[personIndex]};
@@ -62,18 +61,22 @@ class App extends Component {
     // const persons  = this.state.persons.slice();// ES 5, to copy the array 
     const persons = [...this.state.persons]; // ES 6 , spread operator will iterate through each array object and bind it into new array 
     persons.splice(personIndex,1);
-    console.log('Orginal Person array' , this.state.persons);
+    // console.log('Orginal Person array' , this.state.persons);
     this.setState({persons:persons});
   }
 
   // whenever state updates, react will re render this method 
   render() {
     const styleConstName = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color:'white',
       border: '1px solid #ccc',
-      padding: '10px',
-      color: 'black',
-      cursor: 'pointer'
+      padding: '10px',    
+      cursor: 'pointer',
+      ':hover':{
+        backgroundColor:'salmon',
+        color:'black'
+      }
     }
 
 
@@ -91,18 +94,38 @@ class App extends Component {
           })}        
         </div>
       );
+      styleConstName.backgroundColor ='red';
+      styleConstName[':hover'] ={
+        backgroundColor:'lightred',
+        color:'black'
+      }
     }
+
+
+    // dynamically adding classes
+    const classes =[];
+    if(this.state.persons.length <= 2){
+      classes.push('red') // classes =['red]
+    }
+    if(this.state.persons.length <=1){
+      classes.push('red','bold') // classes =['red','bold]
+    }
+
     return (
+      <StyleRoot>
       <div className="App">
         <h1>I am react App</h1>
-        <p>This is really working</p>        
+        <p className={classes.join(" ")}>This is really working</p>        
         <button
           style={styleConstName}
           onClick={this.tooglePersonHandler}>Show Persons</button>
           {persons}
       </div>
+      </StyleRoot>
     );
     // return React.createElement('div', {className:'App'}, React.createElement('h1', null, 'I am react App'));
   }
 }
-export default App;
+
+// wrapping App component to higher level component
+export default Radium(App);
