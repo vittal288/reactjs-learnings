@@ -78,7 +78,7 @@ console.log(person1) --> {'name':'Vittal'};
 
 @@@@@@@@@@@@@@@@@@@@ REACTJS @@@@@@@@@@@@@@@@@@@@@
 --> create react app npm tool like ng cli to create react application 
---> 
+--> Create a new app : npx create-react-app <app_name>
 
 Course Name: JSX Restrictions
 
