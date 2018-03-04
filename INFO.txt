@@ -97,5 +97,11 @@ but not like
 Radium: Popular JS library for ReactJS to write in line styling with psedo selector and media queries
 --> we have to wrap a entite App component inside the <StyleRoot> component, if we planned to use media queries and keyprames through inline styling 
 
+---------------------------------------------------
+@@@ CSS MODULES @@@
+--> To alter "react-scripts" workflow builder configuration, we have to run the following command 
+-->npm run eject
+
+
 
 
