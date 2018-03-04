@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // here React is complete class but Component is object or constant 
-import Radium, {StyleRoot} from 'radium';
+// import Radium, {StyleRoot} from 'radium';
 
 import './App.css';
 import Person from './Person/Person';
@@ -72,11 +72,7 @@ class App extends Component {
       color:'white',
       border: '1px solid #ccc',
       padding: '10px',    
-      cursor: 'pointer',
-      ':hover':{
-        backgroundColor:'salmon',
-        color:'black'
-      }
+      cursor: 'pointer'      
     }
 
 
@@ -94,11 +90,7 @@ class App extends Component {
           })}        
         </div>
       );
-      styleConstName.backgroundColor ='red';
-      styleConstName[':hover'] ={
-        backgroundColor:'lightred',
-        color:'black'
-      }
+      styleConstName.backgroundColor ='red';     
     }
 
 
@@ -111,8 +103,7 @@ class App extends Component {
       classes.push('red','bold') // classes =['red','bold]
     }
 
-    return (
-      <StyleRoot>
+    return (     
       <div className="App">
         <h1>I am react App</h1>
         <p className={classes.join(" ")}>This is really working</p>        
@@ -120,12 +111,12 @@ class App extends Component {
           style={styleConstName}
           onClick={this.tooglePersonHandler}>Show Persons</button>
           {persons}
-      </div>
-      </StyleRoot>
+      </div>      
     );
     // return React.createElement('div', {className:'App'}, React.createElement('h1', null, 'I am react App'));
   }
 }
 
 // wrapping App component to higher level component
-export default Radium(App);
+// export default Radium(App);
+export default App;
