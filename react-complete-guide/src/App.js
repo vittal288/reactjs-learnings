@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // here React is complete class but Component is object or constant 
 // import Radium, {StyleRoot} from 'radium';
 
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -67,16 +67,11 @@ class App extends Component {
 
   // whenever state updates, react will re render this method 
   render() {
-    const styleConstName = {
-      backgroundColor: 'green',
-      color:'white',
-      border: '1px solid #ccc',
-      padding: '10px',    
-      cursor: 'pointer'      
-    }
+   
 
 
     let persons = null;
+    let btnClass = null;
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -89,26 +84,27 @@ class App extends Component {
                       changeCustomName={(event)=>this.nameChangedHandler(event, person.id)}/>
           })}        
         </div>
-      );
-      styleConstName.backgroundColor ='red';     
+      );      
+
+      btnClass = classes.Red;
     }
 
 
     // dynamically adding classes
-    const classes =[];
+    const assignedClasses =[];
     if(this.state.persons.length <= 2){
-      classes.push('red') // classes =['red]
+      assignedClasses.push(classes.red) // classes =['red]
     }
     if(this.state.persons.length <=1){
-      classes.push('red','bold') // classes =['red','bold]
+      assignedClasses.push(classes.bold) // classes =['red','bold]
     }
 
     return (     
-      <div className="App">
+      <div className={classes.App}>
         <h1>I am react App</h1>
-        <p className={classes.join(" ")}>This is really working</p>        
-        <button
-          style={styleConstName}
+        <p className={assignedClasses.join(" ")} >This is really working</p>        
+        <button          
+          className={btnClass}
           onClick={this.tooglePersonHandler}>Show Persons</button>
           {persons}
       </div>      

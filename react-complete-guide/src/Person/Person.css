@@ -6,3 +6,15 @@
     padding: 16px;
     text-align: center;
 }
+
+.red {
+    color:red;
+}
+
+@media (min-width:500px){
+    .Person{
+        background-color: #d9d9d9;
+        width: 450px;
+        border-radius: 10px;
+    }
+}
