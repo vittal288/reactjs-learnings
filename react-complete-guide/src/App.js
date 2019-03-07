@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 // here React is complete class but Component is object or constant 
-// import Radium, {StyleRoot} from 'radium';
+// import Radium, {StyleRoot} from 'radium';//using radium we can the psedo css classes and inline styles 
 
 import classes from './App.css';
+import pClasses from './Person/Person.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -75,7 +76,7 @@ class App extends Component {
     let btnClass = null;
     if (this.state.showPersons) {
       persons = (
-        <div>
+        <div className={pClasses.sample}>
           {this.state.persons.map((person,index) => {
             return <Person 
                       click={ () => this.deletePersonHandler(index)}
@@ -115,5 +116,5 @@ class App extends Component {
 }
 
 // wrapping App component to higher level component
-// export default Radium(App);
+// export default Radium(App);//if we use Radium component 
 export default App;
