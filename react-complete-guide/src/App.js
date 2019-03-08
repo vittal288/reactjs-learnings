@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // here React is complete class but Component is object or constant 
 // import Radium, {StyleRoot} from 'radium';//using radium we can the psedo css classes and inline styles 
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 import classes from './App.css';
 import pClasses from './Person/Person.css';
@@ -78,12 +79,16 @@ class App extends Component {
       persons = (
         <div className={pClasses.sample}>
           {this.state.persons.map((person,index) => {
-            return <Person 
+            return (
+              <ErrorBoundary
+                key={person.id}>
+                <Person 
                       click={ () => this.deletePersonHandler(index)}
                       name={person.name} 
                       age={person.age}
-                      key={person.id}//key is default keyword accept by react component to identify unique of it for virtual DOM
                       changeCustomName={(event)=>this.nameChangedHandler(event, person.id)}/>
+              </ErrorBoundary>
+            )
           })}        
         </div>
       );      

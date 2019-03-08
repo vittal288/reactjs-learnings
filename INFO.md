@@ -161,9 +161,9 @@ this.clickEventHandler= (args)=>{
 
     <div className="Post">
     </div>
-
     ```
-
++ **[ERROR BOUNDARY](https://reactjs.org/docs/error-boundaries.html)**
+    + We can wrap the any specific component with ErrorBonday component if and only iff,  we sure that wrapped component should throw an error for sure on some circumstances 
 
 
 
