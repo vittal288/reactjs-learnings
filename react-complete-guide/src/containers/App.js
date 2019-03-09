@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 // here React is complete class but Component is object or constant 
 // import Radium, {StyleRoot} from 'radium';//using radium we can the psedo css classes and inline styles 
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+//import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 
-import classes from './App.css';
-import pClasses from './Person/Person.css';
-import Person from './Person/Person';
+import classes from '../containers/App.css';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
+import pClasses from '../components/Persons/Person/Person.css';
 
 class App extends Component {
   state = {
@@ -38,7 +39,7 @@ class App extends Component {
     this.setState({persons:persons});
   };
 
-  tooglePersonHandler = () => {
+  togglePersonHandler = () => {
     //DO NOT use this way to update/mutate the state of react component 
     //this.state.persons[1].name ='Vittal Kamkar', instead use setState method
     
@@ -74,47 +75,29 @@ class App extends Component {
   // whenever state updates, react will re render this method 
   render() {
     let persons = null;
-    let btnClass = null;
+    
     if (this.state.showPersons) {
       persons = (
         <div className={pClasses.sample}>
-          {this.state.persons.map((person,index) => {
-            return (
-              <ErrorBoundary
-                key={person.id}>
-                <Person 
-                      click={ () => this.deletePersonHandler(index)}
-                      name={person.name} 
-                      age={person.age}
-                      changeCustomName={(event)=>this.nameChangedHandler(event, person.id)}/>
-              </ErrorBoundary>
-            )
-          })}        
+          <Persons 
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangedHandler}
+          />
         </div>
       );      
-
-      btnClass = classes.Red;
     }
 
-
-    // dynamically adding classes
-    const assignedClasses =[];
-    if(this.state.persons.length <= 2){
-      assignedClasses.push(classes.red) // classes =['red]
-    }
-    if(this.state.persons.length <=1){
-      assignedClasses.push(classes.bold) // classes =['red','bold]
-    }
-
-    return (     
+    return (   
       <div className={classes.App}>
-        <h1>I am react App</h1>
-        <p className={assignedClasses.join(" ")} >This is really working</p>        
-        <button          
-          className={btnClass}
-          onClick={this.tooglePersonHandler}>Show Persons</button>
-          {persons}
-      </div>      
+        <Cockpit 
+          persons = {this.state.persons}
+          clickEvent =    {this.togglePersonHandler}
+          showPersons = {this.state.showPersons}
+        />
+
+       {persons}
+      </div>  
     );
     // return React.createElement('div', {className:'App'}, React.createElement('h1', null, 'I am react App'));
   }
