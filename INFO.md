@@ -108,16 +108,16 @@ Radium: Popular JS library for ReactJS to write in line styling with psedo selec
 
 ## **COMPONENTS**
 + React has two types of components 
-    + ### **Functional Components:** which is stateless 
+    + ### **Functional Components(Presentational Component):** which is stateless 
     ```
     const cmp = () => { return <div>some JSX</div> }
     ```
-    1.  In functional components, use directly props(*for example props.name, props.age,*)
-    ----------------------------------------------------------------------------------------
-    + ### **Class Based Components:** which also reffered as *Containers*, smart of stateful components 
-    1.  In class based components, if you are tried to access the props, use (*this.props*) syntax
-    2.  We can convert class based components to functional components using **React Hooks**
-    ----------------------------------------------------------------------------------------
+    1. In functional components, use directly props(*for example props.name, props.age,*)
+    2. This component does not manage the states
+    + ### **Class Based Components(Container Component):** which also reffered as *Containers*, smart of stateful components 
+    1. In class based components, if you are tried to access the props, use (*this.props*) syntax
+    2. We can convert class based components to functional components using **React Hooks**
+    3. [COMPARE_CLASS_BASED_FUNCTIONAL_BASE](./materials/class-based-functional-comparrison.PNG)
     + ### **PROPS and STATES**
         1. props and states are the **core concepts** of React and by changing or modifying both, trigget React will re-render the entire component and potentially update the DOM in the browser 
         2. **props** will allow to pass a data from parent (wrapped) component to its(embedded) child component 
@@ -175,6 +175,65 @@ this.clickEventHandler= (args)=>{
 ## REACTJS BEST PRACTICES 
 + Use as many as functional components, to avoid state management issues 
 + Manage and manipulates the states of the component through container components which are created from Class Based Components design 
+
+## COMPONENT LIFECYCLE HOOKS(ONLY AVIALBLE IN class-based-components)
++ [Component Lifecycle - Creation Flow](./materils/lifecycle-creation-learning-card.pdf)
++ [Component Lifecycle - Update Flow](./materils/lifecycle-update-external-learning-card.pdf)
++ Following are the component life cycle hooks
+    + **constructor(props)**
+        + this is not react life cycle, instead it is ES6 feature
+        + **DO's:** 
+            + set some initial states and do some initial set up of component 
+        + **DONT's:** 
+            + do not make HTTP request
+            + setting local storage
+            + sendng some analytics to google
+    + **getDerviedStateFromProps()**
+        + **DO's**
+           + whenever props changed, if we want to synch then we can do it in this method
+           + If props changed and if we want to update the internal state of the component 
+           + Will not use this method very frequently in the real world 
+        + **DONT's:** 
+           + Dont send HTTP request
+    + **render()**
+        Post this method renders, then child component of this component will get render
+        + **DO's**
+            + this method can be used to render HTML and prepare the data as you needed layout the view
+            + this method returns the JSX code
+        + **DONT's:** 
+            + Do not make HTTP request 
+            + Do not set up any timer, or any async call 
+
+    + **componentDidMount()**
+        + Post render(), executes then this method will get executes 
+        + **DO's**
+            + Can make HTTP request 
+            + We can use this method very frequently 
+        + **DONT's:** 
+            + Should not update the state of the component here or dont call setState method here
+    + **getSnapshotBeforeUpdate(beforeProps,beforeState)**
+        + This is not that niche component to use 
+        + **DO's**
+            + Which returns the snapshot object(user state) and which we can configure 
+            + Use it for last minute DOM operations 
+            + Used, when getting current scroll position 
+            + We can save some state before component update
+    + **componentDidCatch()**
+    + **componentWillUnmount()**
+        + Rarely use this method 
+        + To set some initial setting of states
+    + **shouldComponentUpdate(nextProps, nextState)**
+        +Should allow us cancel the updating state process 
+        + **DO's**
+            + we can validate whether react continue to render or not 
+            + We can improve the performance of tha app 
+            + We should use this carefully 
+            + It prevents unnecessary updating the component 
+    + **componentDidUpdate()**
+        + Executes, once the update of component is finished 
+        + can make HTTP request 
+        + We can update the state of the component using setState
+
 
 
 

@@ -9,6 +9,13 @@ import Cockpit from '../components/Cockpit/Cockpit';
 import pClasses from '../components/Persons/Person/Person.css';
 
 class App extends Component {
+  //life cycles 
+  constructor(props){
+    super(props);
+    console.log('[App.js] constructor');
+  }
+
+
   state = {
     persons: [
       { id:'adasd', name: 'Vittal', age: 28 },
@@ -18,6 +25,28 @@ class App extends Component {
     showPersons: false,
     'someOtherState': 'Some Other state'
   };
+
+  static getDerivedStateFromProps(props, state){
+    console.log('[App.js] getDerivedStatesFromProps', props);
+    return state;
+  }
+
+  // componentWillMount(){
+  //   console.log('[App.js] componentWillMount()');
+  // }
+
+  componentDidMount(){
+    console.log('[App.js] componentDidMount()')
+  }
+
+  componentDidUpdate(){
+    console.log('[App.js] componentDidUpdate()');
+  }
+
+  shouldComponentUpdate(nextProps,nextState){
+    console.log('[App.js] shouldComponenetUpdate()');
+    return true;
+  }
   // react will pass the event object to this method 
   nameChangedHandler = (event,id) => {
     const personIndex = this.state.persons.findIndex((person)=>{
@@ -74,8 +103,9 @@ class App extends Component {
 
   // whenever state updates, react will re render this method 
   render() {
+    console.log('[App.js] render()');
     let persons = null;
-    
+
     if (this.state.showPersons) {
       persons = (
         <div className={pClasses.sample}>
@@ -91,6 +121,7 @@ class App extends Component {
     return (   
       <div className={classes.App}>
         <Cockpit 
+          title ={this.props.appTitle}
           persons = {this.state.persons}
           clickEvent =    {this.togglePersonHandler}
           showPersons = {this.state.showPersons}
