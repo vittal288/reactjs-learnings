@@ -8,6 +8,8 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import pClasses from '../components/Persons/Person/Person.css';
 
+import ChildComponent from '../components/Child/Child';
+
 class App extends Component {
   //life cycles 
   constructor(props){
@@ -25,7 +27,7 @@ class App extends Component {
     showPersons: false,
     showCockpit:true,
     enableRdBtn:false,
-    'someOtherState': 'Some Other state'
+    myChildData: 'Some data...' 
   };
 
   static getDerivedStateFromProps(props, state){
@@ -103,10 +105,18 @@ class App extends Component {
   }
 
   passDataToChild = ()=>{
-    this.setState({
-      enableRdBtn:true
-    });
+    this.setState(
+      // state => (
+      //     {myParentData: ++state.myParentData}
+
+      // ),
+      this.myChildMethod()
+    );
   }
+
+  myChildMethod = () => {
+    this.setState({myChildData: 'New value'});
+ }; 
 
   // whenever state updates, react will re render this method 
   render() {
@@ -133,7 +143,7 @@ class App extends Component {
             this.setState({showCockpit:false})
         }}
         >Remove Cockpit Comp</button>
-        <button onClick = {this.passDataToChild}>Pass Data to Child Component</button>
+        <button onClick = {this.passDataToChild}>Pass Data </button>
         {this.state.showCockpit ? (<Cockpit 
           title ={this.props.appTitle}
           personsLength = {this.state.persons.length}
@@ -141,6 +151,8 @@ class App extends Component {
           showPersons = {this.state.showPersons}
         />) : null}
        {persons}
+
+       <ChildComponent myChildDataProps={this.state.myChildData} />
       </div> 
     );
     // return React.createElement('div', {className:'App'}, React.createElement('h1', null, 'I am react App'));

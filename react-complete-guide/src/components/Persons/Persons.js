@@ -3,6 +3,9 @@ import Person from './Person/Person';
 
 
 class Persons extends PureComponent {
+
+    state ={myChildData: 'Old value'}
+    
     
     //life cycle 
     // static getDerivedStateFromProps(props, state){
@@ -41,7 +44,8 @@ class Persons extends PureComponent {
     //once the component finished its update flow 
     componentDidUpdate(prevProps,prevState, snapshot){
         console.log('[Persons.js] componentDidUpdate()');
-        console.log(snapshot)
+        console.log(snapshot);
+        console.log(this.state);
     }
 
     // executes when component deleted or removed ot destroyed 
@@ -52,7 +56,7 @@ class Persons extends PureComponent {
 
     render(){
         console.log('[Persons.js] rendering...');
-        console.log(this.props.detectChange);
+        console.log('Data is changed',this.state);
         return this.props.persons.map((person,index) => {
             //here we are returning a Persons list so no need to wrap under DIV
             return (
