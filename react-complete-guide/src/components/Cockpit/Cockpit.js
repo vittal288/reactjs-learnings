@@ -1,15 +1,35 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import classes from './Cockpit.css';
 
 const cockpit = (props) =>{
+    useEffect(()=>{
+        console.log('[Cockpit.js] useEffect()');
+        const timer = setTimeout(()=>{
+            alert('Push data to cloud !!');
+        },1000);
+
+        // this code will execute, once the cockpit component un mount 
+        return ()=>{
+            clearTimeout(timer);
+            console.log('[Cockpit.js] cleanup work in useEffect()');
+        };
+    },[]);// this [] as 2nd argument to useEffect() will  controls the behavior of useEffect()
+    
+    useEffect(()=>{
+        console.log('[Cockpit.js] 2nd useEffect()');
+        
+        return ()=>{
+            console.log('[Cockpit.js] cleanup work in 2nd useEffect()');
+        };
+    });
     // dynamically adding classes
     let btnClass = '';
     const assignedClasses =[];
 
-    if(props.persons.length <= 2){
+    if(props.personsLength <= 2){
       assignedClasses.push(classes.red) // classes =['red]
     }
-    if(props.persons.length <=1){
+    if(props.personsLength <=1){
       assignedClasses.push(classes.bold) // classes =['red','bold]
     }
     
@@ -29,4 +49,4 @@ const cockpit = (props) =>{
     )   
 }
 
-export default cockpit;
+export default React.memo(cockpit);

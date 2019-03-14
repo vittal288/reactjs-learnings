@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Person from './Person/Person';
 
 
-class Persons extends Component {
+class Persons extends PureComponent {
     
     //life cycle 
     // static getDerivedStateFromProps(props, state){
@@ -15,28 +15,44 @@ class Persons extends Component {
     //     console.log(props);
     // }
 
-    shouldComponentUpdate(nextProps,nextState){
-        console.log('[Persons.js] shouldComponentUpdate()')
-        return true//if react should continue to update of not 
-    }
+    // shouldComponentUpdate(nextProps,nextState){
+    //     console.log('[Persons.js] shouldComponentUpdate()');
+    //     if(nextProps.persons !== this.props.persons || 
+    //        nextProps.changed !== this.props.changed || 
+    //        nextProps.clicked !== this.props.clicked){//if previous state and current state are different then update the Persons component 
+    //         return true;//if react should continue to update of not 
+    //     }else{
+    //         return false;
+    //     }
+    //     //return true means it re-renders the component 
+    // }
 
     getSnapshotBeforeUpdate(prevProps, prevState){
         console.log('[Persons.js] getSnapShotBeforeUpdate()');
         //then , render method will get invoked 
         // here you can save some state, before the update 
-        return {message:'Snapshot!'}
+        return {message:'Snapshot!'};
     }
 
     // componentWillUpdate(){
     //     console.log('[Persons.js] componentWillUpdate()')
     // }
 
+    //once the component finished its update flow 
     componentDidUpdate(prevProps,prevState, snapshot){
         console.log('[Persons.js] componentDidUpdate()');
         console.log(snapshot)
     }
+
+    // executes when component deleted or removed ot destroyed 
+    // do some clean up code
+    componentWillUnmount(){
+        console.log('[Persons.js] componentWillUnmount()');
+    }
+
     render(){
-        console.log('[Persons.js] rendering...')
+        console.log('[Persons.js] rendering...');
+        console.log(this.props.detectChange);
         return this.props.persons.map((person,index) => {
             //here we are returning a Persons list so no need to wrap under DIV
             return (
@@ -46,6 +62,7 @@ class Persons extends Component {
                 age={person.age}
                 key={person.id}
                 changeCustomName={(event)=>this.props.changed(event, person.id)}
+
                 />
                 )
             });

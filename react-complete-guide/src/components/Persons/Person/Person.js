@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
 
+import Aux from '../../../hoc/Auxillary';
+
 // work flow builder can understand CSS file should import in JS and it can inject to HTML files sperately with webpack tool
 import classes from  './Person.css';
 
@@ -8,12 +10,12 @@ class Person extends Component {
     //render method returns an JSX code
     render(){
         console.log('[person.js] is rendering...')
-        return (
-            <div className={classes.Person}>
+        return(
+            <Aux>
                 <p onClick={this.props.click}>I'm a {this.props.name} and I am  {this.props.age} year old ! </p>
                 <h1> {this.props.children}</h1>
                 <input type="text" onChange={this.props.changeCustomName} value={this.props.name} />
-            </div>
+            </Aux>
         )
     }
 }

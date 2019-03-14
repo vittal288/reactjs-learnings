@@ -168,13 +168,10 @@ this.clickEventHandler= (args)=>{
 + ### **CONTAINERS (inside codebase container folder)**
     + Through container component,  we can manages the states and manipulates the state
 
+### REACT MEMO
+    + Good practice to wrap functional component into React.memo(componentName) to increase the performance by avoiding un necessary re-rendering process
 
 
-
---------------------------------------------------------------------------------------
-## REACTJS BEST PRACTICES 
-+ Use as many as functional components, to avoid state management issues 
-+ Manage and manipulates the states of the component through container components which are created from Class Based Components design 
 
 ## COMPONENT LIFECYCLE HOOKS(ONLY AVIALBLE IN class-based-components)
 + [Component Lifecycle - Creation Flow](./materils/lifecycle-creation-learning-card.pdf)
@@ -221,7 +218,9 @@ this.clickEventHandler= (args)=>{
     + **componentDidCatch()**
     + **componentWillUnmount()**
         + Rarely use this method 
-        + To set some initial setting of states
+        + Used when to clean up the code once everything finished to deleted from the DOM 
+        + If component get removed or deleted then this method get invokes 
+    
     + **shouldComponentUpdate(nextProps, nextState)**
         +Should allow us cancel the updating state process 
         + **DO's**
@@ -233,7 +232,27 @@ this.clickEventHandler= (args)=>{
         + Executes, once the update of component is finished 
         + can make HTTP request 
         + We can update the state of the component using setState
+        
+## [HOW REACT UPDATES THE DOM](./materials/how-react-updates-the-DOM.png)
+
+## REACT HOOKS
++ useStates(): this can bes used to update the states in the class based component 
++ useEffect(): This can be used with functional or representational component implement,component life cycle hooks
+    + We can send HTTP request in this block 
+
+## HOC(Higher Order Component)
+    + If we want to return a multiple Adjecent element from render method and entrire JX code should wrap insude the Aux or HOC component 
 
 
+--------------------------------------------------------------------------------------
+## REACTJS BEST PRACTICES 
++ Use as many as functional components, to avoid state management issues 
++ Manage and manipulates the states of the component through container components which are created from Class Based Components design 
++ Good practice to wrap functional component into **React.memo(componentName)** to increase the performance by avoiding un necessary re-rendering process
++ Good practice to use **shouldComponentUpdate()** life cycle hook for class based component to avoid un necessary re-rendering process
++ **PureComponent**, is checked the props changed or not to re-render the component(here is no need use **shouldComponentUpdate()** life cycle hook)
+
+## IMPORTANT LINKS 
++ [ReactJS Routing ](https://reacttraining.com/react-router/web/example/basic)
 
 

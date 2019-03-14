@@ -23,6 +23,8 @@ class App extends Component {
       { id:'eqweqew',name: 'Harsha', age: 30 }
     ],
     showPersons: false,
+    showCockpit:true,
+    enableRdBtn:false,
     'someOtherState': 'Some Other state'
   };
 
@@ -72,7 +74,6 @@ class App extends Component {
     //DO NOT use this way to update/mutate the state of react component 
     //this.state.persons[1].name ='Vittal Kamkar', instead use setState method
     
-    
     this.setState({
       showPersons: !this.state.showPersons
     })
@@ -101,6 +102,12 @@ class App extends Component {
     this.setState({persons:persons});
   }
 
+  passDataToChild = ()=>{
+    this.setState({
+      enableRdBtn:true
+    });
+  }
+
   // whenever state updates, react will re render this method 
   render() {
     console.log('[App.js] render()');
@@ -113,6 +120,7 @@ class App extends Component {
             persons={this.state.persons}
             clicked={this.deletePersonHandler}
             changed={this.nameChangedHandler}
+            detectChange={this.state.enableRdBtn}
           />
         </div>
       );      
@@ -120,15 +128,20 @@ class App extends Component {
 
     return (   
       <div className={classes.App}>
-        <Cockpit 
+        <button 
+          onClick={()=>{
+            this.setState({showCockpit:false})
+        }}
+        >Remove Cockpit Comp</button>
+        <button onClick = {this.passDataToChild}>Pass Data to Child Component</button>
+        {this.state.showCockpit ? (<Cockpit 
           title ={this.props.appTitle}
-          persons = {this.state.persons}
+          personsLength = {this.state.persons.length}
           clickEvent =    {this.togglePersonHandler}
           showPersons = {this.state.showPersons}
-        />
-
+        />) : null}
        {persons}
-      </div>  
+      </div> 
     );
     // return React.createElement('div', {className:'App'}, React.createElement('h1', null, 'I am react App'));
   }
