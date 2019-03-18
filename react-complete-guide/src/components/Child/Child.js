@@ -39,19 +39,6 @@ class MyChildComponent extends Component {
                 user.activeItem = user.activeItem === index ? -1 : index;
             }
        });
-
-    //    var parentNode = document.getElementById(evt.target.parentElement.parentElement.id);
-    //    if(evt.target.checked){
-    //        if(parentNode.className === 'active'){
-    //            parentNode.removeAttribute('class');
-    //         }else{
-    //             parentNode.classList.add('active');
-    //         }
-    //     }else{
-    //         parentNode.removeAttribute('class');
-    //     }
-
-
         this.setState({users:users});
     }
 
@@ -61,31 +48,6 @@ class MyChildComponent extends Component {
 
     render(){
         console.log('[Child.js] rendered()');
-        
-        // const cUsers = [
-        //     {
-        //         name:'vittal',
-        //         checked:true
-        //     },
-        //     {
-        //         name:'Akhila',
-        //         checked:false
-        //     },
-        //     {
-        //         name:'Anitha',
-        //         checked:true
-        //     }
-        // ];
-
-        // onChangeHandlerWithConst = (evt)=>{
-        //     //console.log('checkBoxes',evt);
-        //    users.map((user)=>{
-        //         if(user.name === evt.target.value){
-        //             user.checked = evt.target.checked;
-        //         }
-        //    });
-        // };
-
          return (
              <div>
                 <p>{this.props.myChildDataProps}</p>
@@ -109,31 +71,6 @@ class MyChildComponent extends Component {
                         })}
                     </ul>   
                 </div>
-                
-
-                {
-                /* 
-                    <h3>CheckBoxes with Const</h3>
-                    <ul className={classes.list}>
-                            {cUsers.map((user,index)=>{
-                                    return (
-                                    <div className={this.state.activeItem === index ? classes.active:null }>
-                                        <li key={index}>
-                                            <label for="checkid" className={classes.label}>
-                                                <input className={classes.checkbox} 
-                                                    onChange={this.onChangeHandlerWithConst} 
-                                                    type="checkbox" 
-                                                    value={user.name} 
-                                                    checked={user.checked} />
-                                            </label>
-                                            {user.name}
-                                        </li>
-                                    </div>)
-                            })}
-                    </ul> 
-                */
-                }  
-
              </div>
         )
     }
