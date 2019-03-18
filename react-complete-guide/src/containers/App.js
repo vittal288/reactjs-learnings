@@ -7,6 +7,8 @@ import classes from '../containers/App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import pClasses from '../components/Persons/Person/Person.css';
+import withClass from '../hoc/withClass';//this is just a simple function it is retuning functional component 
+import Aux from '../hoc/Auxillary';
 
 import ChildComponent from '../components/Child/Child';
 
@@ -15,19 +17,22 @@ class App extends Component {
   constructor(props){
     super(props);
     console.log('[App.js] constructor');
+
+    this.child = React.createRef();
   }
 
 
   state = {
     persons: [
-      { id:'adasd', name: 'Vittal', age: 28 },
-      { id:'24eds',name: 'Sandy', age: 29 },
-      { id:'eqweqew',name: 'Harsha', age: 30 }
+      { id:'adasd', name: 'Vittal', age: 28,nonVeg:true },
+      { id:'24eds',name: 'Sandy', age: 29,nonVeg:true },
+      { id:'eqweqew',name: 'Harsha', age: 30, nonVeg:false }
     ],
     showPersons: false,
     showCockpit:true,
     enableRdBtn:false,
-    myChildData: 'Some data...' 
+    myChildData: 'Some data...' ,
+    updateCheckBox:true
   };
 
   static getDerivedStateFromProps(props, state){
@@ -105,18 +110,28 @@ class App extends Component {
   }
 
   passDataToChild = ()=>{
-    this.setState(
-      // state => (
-      //     {myParentData: ++state.myParentData}
+    // this.setState(
+    //   // state => (
+    //   //     {myParentData: ++state.myParentData}
 
-      // ),
-      this.myChildMethod()
-    );
+    //   // ),
+    //   this.updateChildComponentState()
+    // );
+
+    
+    //this.state.updateCheckBox = !this.state.updateCheckBox;
+    // this.setState({
+    //   nonVeg: !this.state.updateCheckBox
+    // });
+
+    this.child.current.selectNonVeg(true);
   }
 
-  myChildMethod = () => {
-    this.setState({myChildData: 'New value'});
- }; 
+  updateChildComponentState = () => {
+    var value = false;
+    value = !value;
+    this.setState({nonVeg: value});
+  }; 
 
   // whenever state updates, react will re render this method 
   render() {
@@ -137,7 +152,7 @@ class App extends Component {
     }
 
     return (   
-      <div className={classes.App}>
+      <Aux classes={classes.App}>
         <button 
           onClick={()=>{
             this.setState({showCockpit:false})
@@ -152,8 +167,8 @@ class App extends Component {
         />) : null}
        {persons}
 
-       <ChildComponent myChildDataProps={this.state.myChildData} />
-      </div> 
+       <ChildComponent ref={this.child} myChildDataProps={this.state.myChildData} />
+      </Aux> 
     );
     // return React.createElement('div', {className:'App'}, React.createElement('h1', null, 'I am react App'));
   }
@@ -161,4 +176,4 @@ class App extends Component {
 
 // wrapping App component to higher level component
 // export default Radium(App);//if we use Radium component 
-export default App;
+export default withClass(App, classes.App);

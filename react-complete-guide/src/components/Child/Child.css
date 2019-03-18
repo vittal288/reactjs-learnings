@@ -1,0 +1,25 @@
+.list {
+    padding: 10px;
+    list-style-type: none;
+
+}
+.list li{
+    color: #c3c3c3;
+    cursor: pointer;
+}
+
+li.active{
+    color: red;
+    font-weight: bold;
+}
+.label{
+    word-wrap:break-word
+}
+.checkbox{
+    cursor: pointer;
+}
+
+div.active li {
+    color: red;
+    font-weight: bold;
+}

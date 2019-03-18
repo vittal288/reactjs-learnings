@@ -240,8 +240,9 @@ this.clickEventHandler= (args)=>{
 + useEffect(): This can be used with functional or representational component implement,component life cycle hooks
     + We can send HTTP request in this block 
 
-## HOC(Higher Order Component)
-    + If we want to return a multiple Adjecent element from render method and entrire JX code should wrap insude the Aux or HOC component 
+## HOC(Higher Order Component) or React.Fragment
++ If we want to return a multiple Adjecent element from render method and entrire JX code should wrap insude the Aux or HOC component 
++ Built in HOC is available from React i.e **React.Fragment**
 
 
 --------------------------------------------------------------------------------------

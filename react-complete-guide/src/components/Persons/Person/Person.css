@@ -22,3 +22,8 @@
         border-radius: 10px;
     }
 }
+
+span.active{
+    color: red;
+    font-weight: bold;
+}
