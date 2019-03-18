@@ -124,7 +124,7 @@ class App extends Component {
     //   nonVeg: !this.state.updateCheckBox
     // });
 
-    this.child.current.selectNonVeg(true);
+    this.child.current.updateUserList('vittal');
   }
 
   updateChildComponentState = () => {
@@ -158,7 +158,7 @@ class App extends Component {
             this.setState({showCockpit:false})
         }}
         >Remove Cockpit Comp</button>
-        <button onClick = {this.passDataToChild}>Pass Data </button>
+        <button onClick = {this.passDataToChild}>Update Cild Component</button>
         {this.state.showCockpit ? (<Cockpit 
           title ={this.props.appTitle}
           personsLength = {this.state.persons.length}

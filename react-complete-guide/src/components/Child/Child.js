@@ -34,12 +34,23 @@ class MyChildComponent extends Component {
        //console.log('checkBoxes',evt);
        var users = this.state.users;
        users.map((user)=>{
-            if(user.name === evt.target.value){
-                user.checked = evt.target.checked;
-                user.activeItem = user.activeItem === index ? -1 : index;
+           if(user.name === evt.target.value){
+               user.checked = evt.target.checked;
+               user.activeItem = user.activeItem === index ? -1 : index;
+            }
+        });
+        this.setState({users:users});
+    }
+    
+    updateUserList =(value)=>{
+      var users = this.state.users;
+      users.map((user)=>{
+            if(user.name === value){
+                user.checked = false;
             }
        });
-        this.setState({users:users});
+
+       this.setState({users:users});
     }
 
 
