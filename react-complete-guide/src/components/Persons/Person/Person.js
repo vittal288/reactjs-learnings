@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import PropTypes from 'prop-types';
 
 import Aux from '../../../hoc/Auxillary';
 import withClass from '../../../hoc/withClass';
@@ -19,6 +20,15 @@ class Person extends Component {
             </Aux>
         )
     }
+}
+
+
+//define the data types of the props using prop-types npm component 
+Person.propTypes={
+    click:PropTypes.func,
+    name:PropTypes.string,
+    age:PropTypes.number,
+    changeCustomName:PropTypes.func
 }
 
 // we need react here to convert HTML code to JS X code : React.createElement
