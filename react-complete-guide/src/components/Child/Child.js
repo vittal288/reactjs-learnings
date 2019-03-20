@@ -5,8 +5,9 @@ import classes from './Child.css';
 
 class MyChildComponent extends Component {
 
-    state ={
+    state = {
             myChildData: 'Old value',
+            myCheckBox:true,
             users:[
                 {
                     name:'vittal',
@@ -16,7 +17,7 @@ class MyChildComponent extends Component {
                 },
                 {
                     name:'Akhila',
-                    checked:false,
+                    checked:true,
                     activeItem:-1,
                    
                 },
@@ -26,13 +27,43 @@ class MyChildComponent extends Component {
                     activeItem:-1,                  
                 }
             ]
-      };
+    };
+
+    get initialState() {
+        return {
+            myChildData: 'Old value',
+            myCheckBox:true,
+            users:[
+                {
+                    name:'vittal',
+                    checked:false,
+                    activeItem:-1,
+                   
+                },
+                {
+                    name:'Akhila',
+                    checked:true,
+                    activeItem:-1,
+                   
+                },
+                {
+                    name:'Anitha',
+                    checked:false ,
+                    activeItem:-1,                  
+                }
+            ]
+        };
+    }
+
+    constructor(props){
+        super(props);
+        this.state = this.initialState;
+    }
 
 
  
     onChangeHandler = (index, evt)=>{
-       //console.log('checkBoxes',evt);
-       var users = this.state.users;
+       var users =  [...this.state.users];
        users.map((user)=>{
            if(user.name === evt.target.value){
                user.checked = evt.target.checked;
@@ -41,16 +72,27 @@ class MyChildComponent extends Component {
         });
         this.setState({users:users});
     }
+
+    onChangeCheckBox =(evt)=>{
+        this.setState({
+            myCheckBox:evt.target.checked
+        })
+    }
     
     updateUserList =(value)=>{
-      var users = this.state.users;
+      var users = [...this.state.users];
       users.map((user)=>{
             if(user.name === value){
                 user.checked = false;
+                user.activeItem = -1
             }
        });
-
        this.setState({users:users});
+    }
+
+    //reset the state of child component 
+    resetState = ()=>{
+        this.setState(this.initialState);
     }
 
 
@@ -60,13 +102,16 @@ class MyChildComponent extends Component {
     render(){
         console.log('[Child.js] rendered()');
          return (
-             <div>
-                <p>{this.props.myChildDataProps}</p>
-                <h3>CheckBoxes with states</h3>
+             <div className={classes.Child}>
+                <button onClick={this.resetState}>Reset State</button>
+                <div>
+                    <input type="checkbox" checked={this.state.myCheckBox} onChange={this.onChangeCheckBox.bind(this)} />
+                    <span>{this.props.myChildDataProps}</span> 
+                </div>
                 <div>
                     <ul className={classes.list}>
                         {this.state.users.map((user,index)=>{
-                                return (
+                            return (
                                 <div className={user.activeItem === index ? classes.active:null }>
                                     <li id={'list-item'+index} key={index}>
                                         <label for="checkid">

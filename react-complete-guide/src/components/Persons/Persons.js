@@ -61,12 +61,12 @@ class Persons extends PureComponent {
             //here we are returning a Persons list so no need to wrap under DIV
             return (
                 <Person 
-                click={ () => this.props.clicked(index)}
-                name={person.name} 
-                age={person.age}
-                key={person.id}
-                nonVeg={person.nonVeg}
-                changeCustomName={(event)=>this.props.changed(event, person.id)}
+                    click={ () => this.props.clicked(index)}
+                    name={person.name} 
+                    age={person.age}
+                    key={person.id}
+                    nonVeg={person.nonVeg}
+                    changeCustomName={(event)=>this.props.changed(event, person.id)}
                 />
                 )
             });
