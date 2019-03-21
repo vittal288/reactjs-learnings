@@ -9,6 +9,17 @@ import classes from  './Person.css';
 
 // this component will change the state because setState method is not available in the function component 
 class Person extends Component {   
+
+    constructor(){
+        super();
+        this.inputElementRef = React.createRef();
+    }
+    // it execute once this component renders 
+    componentDidMount(){
+        //this.inputElement.focus();
+
+        this.inputElementRef.current.focus();
+    }
     //render method returns an JSX code
     render(){
         console.log('[person.js] is rendering...')
@@ -16,7 +27,13 @@ class Person extends Component {
             <Aux>
                 <p onClick={this.props.click}>I'm a {this.props.name} and I am  {this.props.age} year old ! </p>
                 <h1> {this.props.children}</h1>
-                <input type="text" onChange={this.props.changeCustomName} value={this.props.name} />
+                <input 
+                    type="text" 
+                    onChange={this.props.changeCustomName} 
+                    value={this.props.name} 
+                    //ref={(inputElement)=>{this.inputElement = inputElement}}
+                    ref ={this.inputElementRef}
+                    />
             </Aux>
         )
     }

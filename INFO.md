@@ -244,6 +244,11 @@ this.clickEventHandler= (args)=>{
 + If we want to return a multiple Adjecent element from render method and entrire JX code should wrap insude the Aux or HOC component 
 + Built in HOC is available from React i.e **React.Fragment**
 
+## Ref
++ We can create reference for any JSX or HTML elements
++ this is to create the reference of the element 
++ this will help to invoke child component from parent component 
+
 
 --------------------------------------------------------------------------------------
 ## REACTJS BEST PRACTICES 
