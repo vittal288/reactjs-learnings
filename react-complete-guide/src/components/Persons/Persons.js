@@ -67,6 +67,7 @@ class Persons extends PureComponent {
                     key={person.id}
                     nonVeg={person.nonVeg}
                     changeCustomName={(event)=>this.props.changed(event, person.id)}
+                    isAuth={this.props.isAuthenticated}
                 />
                 )
             });

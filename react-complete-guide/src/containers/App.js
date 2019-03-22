@@ -9,6 +9,7 @@ import Cockpit from '../components/Cockpit/Cockpit';
 import pClasses from '../components/Persons/Person/Person.css';
 import withClass from '../hoc/withClass';//this is just a simple function it is retuning functional component 
 import Aux from '../hoc/Auxillary';
+import AuthContext from '../context/auth-context';
 
 import ChildComponent from '../components/Child/Child';
 
@@ -33,7 +34,8 @@ class App extends Component {
     enableRdBtn:false,
     myChildData: 'Some data...' ,
     updateCheckBox:true,
-    changeCounter:0
+    changeCounter:0,
+    authenticated:false
   };
 
   static getDerivedStateFromProps(props, state){
@@ -141,6 +143,13 @@ class App extends Component {
     this.setState({nonVeg: value});
   }; 
 
+  loginHandler = ()=>{
+    console.log('LOGIN');
+    this.setState({
+      authenticated:true
+    })
+  }
+
   // whenever state updates, react will re render this method 
   render() {
     console.log('[App.js] render()');
@@ -154,6 +163,7 @@ class App extends Component {
             clicked={this.deletePersonHandler}
             changed={this.nameChangedHandler}
             detectChange={this.state.enableRdBtn}
+            isAuthenticated={this.state.authenticated}
           />
         </div>
       );      
@@ -167,13 +177,22 @@ class App extends Component {
         }}
         >Remove Cockpit Comp</button>
         <button onClick = {this.passDataToChild}>Update Cild Component</button>
-        {this.state.showCockpit ? (<Cockpit 
-          title ={this.props.appTitle}
-          personsLength = {this.state.persons.length}
-          clickEvent =    {this.togglePersonHandler}
-          showPersons = {this.state.showPersons}
-        />) : null}
-       {persons}
+        <AuthContext.Provider 
+          value={{
+            isAuthenticated:this.state.authenticated, 
+            login:this.loginHandler
+          }}
+        >
+          {this.state.showCockpit ? (
+          <Cockpit 
+            title ={this.props.appTitle}
+            personsLength = {this.state.persons.length}
+            clickEvent =    {this.togglePersonHandler}
+            showPersons = {this.state.showPersons}
+          />) : null}
+        {persons}
+       </AuthContext.Provider>
+
 
        <ChildComponent ref={this.child} myChildDataProps={this.state.myChildData} />
       </Aux> 

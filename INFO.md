@@ -249,6 +249,11 @@ this.clickEventHandler= (args)=>{
 + this is to create the reference of the element 
 + this will help to invoke child component from parent component 
 
+## Context API
++ Conext API is used when you have long chain of props passing from component to component component 
++ If you want to pass props from one component to another component by-passing props from some middle chained components 
++ Directly passing data from A component to D component by skipping B and C component 
+
 
 --------------------------------------------------------------------------------------
 ## REACTJS BEST PRACTICES 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Aux from '../../../hoc/Auxillary';
 import withClass from '../../../hoc/withClass';
+import AuthContext from '../../../context/auth-context';
 
 // work flow builder can understand CSS file should import in JS and it can inject to HTML files sperately with webpack tool
 import classes from  './Person.css';
@@ -24,6 +25,10 @@ class Person extends Component {
         console.log('[person.js] is rendering...')
         return(
             <Aux>
+                <AuthContext.Consumer>
+                    {(context)=> context.isAuthenticated ? <b>Authenticated !</b> :<p>Please login</p>}
+                </AuthContext.Consumer>
+
                 <p onClick={this.props.click}>I'm a {this.props.name} and I am  {this.props.age} year old ! </p>
                 <h1> {this.props.children}</h1>
                 <input 
