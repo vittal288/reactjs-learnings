@@ -17,7 +17,6 @@ class Person extends Component {
     // it execute once this component renders 
     componentDidMount(){
         //this.inputElement.focus();
-
         this.inputElementRef.current.focus();
     }
     //render method returns an JSX code
