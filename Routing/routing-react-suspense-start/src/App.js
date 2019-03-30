@@ -23,7 +23,8 @@ class App extends Component {
     return (
       <React.Fragment>
       <button onClick={this.toggleComponent}>Toggle Component</button>
-        {this.state.showPosts ?<Suspense fallback={<div>Loading...</div>}>
+        {this.state.showPosts ?
+                <Suspense fallback={<div>Loading...</div>}>
                   <Posts/>
                 </Suspense> : <User />
         }
