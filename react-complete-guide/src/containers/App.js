@@ -12,6 +12,8 @@ import Aux from '../hoc/Auxillary';
 import AuthContext from '../context/auth-context';
 
 import ChildComponent from '../components/Child/Child';
+import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
+import { Button } from 'reactstrap';
 
 class App extends Component {
   //life cycles 
@@ -171,6 +173,10 @@ class App extends Component {
 
     return (   
       <Aux classes={classes.App}>
+        <div>
+          <Breadcrumb />
+          <Button color="danger">Danger!</Button>
+        </div>
         <button 
           onClick={()=>{
             this.setState({showCockpit:false})
