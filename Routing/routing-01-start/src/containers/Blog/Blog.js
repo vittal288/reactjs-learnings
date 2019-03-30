@@ -3,12 +3,19 @@ import {Route, NavLink, Switch, Redirect} from 'react-router-dom';
 // import axios from 'axios';
 import './Blog.css';
 import Posts from './Posts/Posts';
-import NewPost from './NewPost/NewPost';
+// Normal IMPORT statement will include by default by webpack globally in bundle.js file , to enhance LAZY LOADING, we are importing component through asyncComponent
+//import NewPost from './NewPost/NewPost';
 //import FullPost from './FullPost/FullPost';
+
+import asyncComponent from '../../hoc/aSyncComponent';
+
+const AsyncNewPost = asyncComponent(()=>{
+    return import('./NewPost/NewPost');
+})
 
 class Blog extends Component {
     state={
-        auth:false
+        auth:true
     }
     
     render () {
@@ -49,7 +56,7 @@ class Blog extends Component {
                     */}
 
                     {/**ROUTER GUARD */}
-                    {this.state.auth ? <Route path="/new-post" exact  component={NewPost}/> : null}
+                    {this.state.auth ? <Route path="/new-post" exact  component={AsyncNewPost}/> : null}
                     
                     <Route path="/posts/" component={Posts}/>
                     <Route render={()=> <h1>PAGE NOT FOUND</h1>} />
