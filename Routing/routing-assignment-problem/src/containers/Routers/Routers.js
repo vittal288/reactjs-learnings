@@ -28,10 +28,14 @@ class Routers extends Component {
 
                 <section className="section">
                     <Switch>
-                        <Route exact path="/courses" component={Courses}/>
-                        <Route exact path="/coursesDetails/:id" exact component={Course}/>
-                        <Route exact path="/users" component={Users}/>
-                        <Redirect from="/allCourses" to="/courses" />
+                        <Route  path="/users" component={Users}/>
+                        <Route  path="/courses" component={Courses}/>
+                        
+                        {/*
+                            <Route exact path="/courses/:id" exact component={Course}/>
+                        */}
+                        
+                        <Redirect from="/all-courses" to="/courses" />
                         <Route component={PageNotFound}/>
                     </Switch>
                 </section>

@@ -23,9 +23,9 @@ class Courses extends Component {
                         this.state.courses.map( course => {
                             return (
                                 <Link to={{
-                                    pathname: '/coursesDetails/'+course.id,
-                                    courseTitle:course.title
-                                }} key={course.id}>
+                                        pathname: this.props.match.url+'/'+course.id,
+                                        search:'?courseTitle='+course.title
+                                    }} key={course.id}>
                                     <article className="Course" >{course.title}</article>
                                 </Link>
                             )
@@ -33,8 +33,9 @@ class Courses extends Component {
                     }
                 </section>
                 <hr/>
+                
                 <section>
-                    <Route to="/courses" component={Course} />
+                    <Route path ={this.props.match.url + '/:id'} component={Course} />
                 </section>
             </div>
         );
