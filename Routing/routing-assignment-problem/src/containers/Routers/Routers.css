@@ -1,0 +1,9 @@
+.Router{
+    padding: 10px;
+}
+
+.Router .section{
+    margin-top: 50px;
+    border: 1px solid #cecece;
+    min-height: 400px;
+}
