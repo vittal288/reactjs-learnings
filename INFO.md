@@ -259,6 +259,8 @@ this.clickEventHandler= (args)=>{
 ## STATIC properties 
 + static based types are accessed outside of the class/or component without instantiating the class 
 
+## PURE COMPONENTS:
+
 --------------------------------------------------------------------------------------
 ## REACTJS BEST PRACTICES 
 + Use as many as functional components, to avoid state management issues 

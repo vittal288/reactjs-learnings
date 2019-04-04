@@ -1,32 +1,36 @@
 
-import React from 'react';
+import React, {Component} from 'react';
 
-import Aux from '../../../hoc/Auxillary';
+import Aux from '../../../hoc/Auxillary/Auxillary';
 import Button from '../../UI/Button/Button';
 
-const orderSummary = (props) =>{
-   const ingredientsSummary = Object.keys(props.ingredients)
-        .map((igKey,index)=>{
-            return(
-                    <li key={igKey+index}>
-                        <span style={{textTransform:'capitalize'}}>{igKey}</span> : {props.ingredients[igKey]}
-                    </li>
-             );
-        });
+class OrderSummary extends Component {
 
-   return (
-    <Aux>
-        <h3>Your Order:</h3>
-        <p>A delicious burger with following ingredients:</p>
-        <ul>
-            {ingredientsSummary}
-        </ul>
-        <p><strong>Total Price: $ {props.price.toFixed(2)} </strong></p>
-        <p>Continue to Checkout ?</p>
+   render(){
 
-        <Button btnType="Danger" clicked={props.purchaseCanceled}>CANCEL</Button>
-        <Button btnType="Success" clicked={props.purchaseContinued}>CONTINUE</Button>
-    </Aux>
-   )
+       const ingredientsSummary = Object.keys(this.props.ingredients)
+            .map((igKey,index)=>{
+                return(
+                        <li key={igKey+index}>
+                            <span style={{textTransform:'capitalize'}}>{igKey}</span> : {this.props.ingredients[igKey]}
+                        </li>
+                 );
+            });
+    
+       return (
+        <Aux>
+            <h3>Your Order:</h3>
+            <p>A delicious burger with following ingredients:</p>
+            <ul>
+                {ingredientsSummary}
+            </ul>
+            <p><strong>Total Price: $ {this.props.price.toFixed(2)} </strong></p>
+            <p>Continue to Checkout ?</p>
+    
+            <Button btnType="Danger" clicked={this.props.purchaseCanceled}>CANCEL</Button>
+            <Button btnType="Success" clicked={this.props.purchaseContinued}>CONTINUE</Button>
+        </Aux>
+       )
+    }
 }
-export default orderSummary;
+export default OrderSummary;
