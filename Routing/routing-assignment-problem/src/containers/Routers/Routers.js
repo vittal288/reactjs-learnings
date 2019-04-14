@@ -5,6 +5,7 @@ import Courses from '../Courses/Courses';
 import Course from '../Course/Course';
 import Users from '../Users/Users';
 import PageNotFound from '../PageNotFound/PageNotFound';
+import Dashboard from '../Dashboard/Dashboard';
 
 import "./Routers.css";
 
@@ -22,6 +23,9 @@ class Routers extends Component {
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/users">USERS</NavLink>
                             </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/dashboard">DASHBOARD</NavLink>
+                            </li>
                         </ul>
                     </nav>
                 </header>
@@ -30,7 +34,7 @@ class Routers extends Component {
                     <Switch>
                         <Route  path="/users" component={Users}/>
                         <Route  path="/courses" component={Courses}/>
-                        
+                        <Route  path="/dashboard" component={Dashboard} />
                         {/*
                             <Route exact path="/courses/:id" exact component={Course}/>
                         */}
