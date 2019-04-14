@@ -140,6 +140,10 @@ class Component1 extends Component {
     }
 
 
+    updateCharts = (data)=>{
+        console.log('DATA from child to Parent', data);
+    }
+
     //remove duplicates from array
     removeDuplicates = (arr, prop) => {
         if (prop === undefined) {
@@ -178,7 +182,7 @@ class Component1 extends Component {
                     <LeftNav checkBoxes={checkBoxes} checkBoxClickEvt={this.checkBoxClickEvtHandler}/>
                 </div>
                 <div className="col-md-8">
-                    <Breadcrumb data={this.state.breadCrumbData}/>
+                    <Breadcrumb data={this.state.breadCrumbData} onClicked={this.updateCharts} url="google.com"/>
                     <Chart data={chartsData} ChartClickEvnt={this.chartClickEventHandler.bind(this)}/>
                 </div>
             </Aux>

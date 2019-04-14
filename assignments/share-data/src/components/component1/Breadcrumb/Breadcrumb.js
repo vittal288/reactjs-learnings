@@ -10,7 +10,7 @@ class Breadcrumb extends Component{
                     <ol className="breadcrumb">
                        {this.props.data.map((item,index)=>{
                         return(
-                                 <li className="breadcrumb-item" key={index}><a href={'#'+item.url}>{item.name}</a></li>
+                                 <li className="breadcrumb-item" key={index}><a onClick={()=>this.props.onClicked(this.props.url)}>{item.name}</a></li>
                             );
                         })}
                     </ol>
