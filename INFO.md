@@ -174,8 +174,8 @@ this.clickEventHandler= (args)=>{
 
 
 ## COMPONENT LIFECYCLE HOOKS(ONLY AVIALBLE IN class-based-components)
-+ [Component Lifecycle - Creation Flow](./materils/lifecycle-creation-learning-card.pdf)
-+ [Component Lifecycle - Update Flow](./materils/lifecycle-update-external-learning-card.pdf)
++ [Component Lifecycle - Creation Flow](./materials/lifecycle-creation-learning-card.pdf)
++ [Component Lifecycle - Update Flow](./materials/lifecycle-update-external-learning-card.pdf)
 + Following are the component life cycle hooks
     + **constructor(props)**
         + this is not react life cycle, instead it is ES6 feature
