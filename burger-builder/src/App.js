@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 
+import {Route, Switch} from 'react-router-dom';
+
 import Layout from './hoc/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 import Classes from './App.module.css';
+
+import Checkout from './containers/Checkout/Checkout';
+import Orders from './containers/Checkout/Orders/Order';
 
 
 
@@ -11,7 +16,11 @@ class App extends Component {
     return (
       <div className={Classes.App}>
         <Layout>
-          <BurgerBuilder />
+          <Switch>
+            <Route path="/checkout" component={Checkout}/>
+            <Route path="/orders" exact component={Orders}/>
+            <Route path="/" exact component={BurgerBuilder}/>
+          </Switch>
         </Layout>
       </div>
     );

@@ -1,10 +1,12 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 import classes from './Burger.module.css';
 
 
 const burger = (props) => {
+    //console.log('HOC Router INFO with withRouter', props)
     let transformedIngredients = Object.keys(props.ingredients)
     .map((igKey)=>{
         return [...Array(props.ingredients[igKey])].map((_,i)=>{
@@ -16,7 +18,7 @@ const burger = (props) => {
         return arr.concat(el);
     },[])
     // transformedIngredients: returns an no of BurgerIngredient component of specified type
-    console.log(transformedIngredients);
+    //console.log(transformedIngredients);
     if(transformedIngredients.length === 0){
         transformedIngredients = <p>Please start adding Ingredients !!!</p>
     }
@@ -34,4 +36,4 @@ const burger = (props) => {
     );
 }
 
-export default burger;
+export default withRouter(burger);

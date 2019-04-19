@@ -268,6 +268,8 @@ this.clickEventHandler= (args)=>{
 + Good practice to wrap functional component into **React.memo(componentName)** to increase the performance by avoiding un necessary re-rendering process
 + Good practice to use **shouldComponentUpdate()** life cycle hook for class based component to avoid un necessary re-rendering process
 + **PureComponent**, is checked the props changed or not to re-render the component(here is no need use **shouldComponentUpdate()** life cycle hook)
++ Router related information or router object,  through this.props or props only available in the component which is loaded through ROUTER
++ If you want to access router info in any of the components, just wrap the component with withRouter higher component.
 
 ## IMPORTANT LINKS 
 + [ReactJS Routing ](https://reacttraining.com/react-router/web/example/basic)
