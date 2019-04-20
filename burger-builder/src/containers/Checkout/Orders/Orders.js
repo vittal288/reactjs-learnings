@@ -14,10 +14,10 @@ class Orders extends Component {
     componentDidMount(){
         this.setState({
             loading:true
-        })
+        });
+        
         axios.get('/order.json')
         .then((response)=>{
-          
             let fetchedOrders =[];
             for(let key in response.data){
                 fetchedOrders.push({
@@ -30,8 +30,6 @@ class Orders extends Component {
                 loading:false,
                 orders:fetchedOrders
             });
-
-            console.log(this.state.orders)
         })
         .catch(error=>{
             console.log('ERROR',error);
@@ -42,17 +40,25 @@ class Orders extends Component {
     }
 
     render(){
+        let order = null;
+        if(this.state.loading){
+            order =<Spinner />
+        }else{
+            order =  <div>
+                        <h1 style={{textAlign:'center'}}>Your Orders</h1>
+                        {this.state.orders.map((order)=>{
+                            return(
+                                <Order 
+                                    ingredient={order.ingredients} 
+                                    key={order.id}
+                                    price={+order.price}/>
+                            )
+                        })}
+                    </div>
+        }
         return(
             <div>
-                <h1 style={{textAlign:'center'}}>Your Orders</h1>
-                {this.state.orders.map((order)=>{
-                    return(
-                        <Order 
-                            ingredient={order.ingredients} 
-                            key={order.id}
-                            price={+order.price}/>
-                    )
-                })};
+                {order}
             </div>
         )
     }

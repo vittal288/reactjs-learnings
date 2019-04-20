@@ -7,7 +7,7 @@ import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 import Classes from './App.module.css';
 
 import Checkout from './containers/Checkout/Checkout';
-import Orders from './containers/Checkout/Orders/Order';
+import Orders from './containers/Checkout/Orders/Orders';
 
 
 
