@@ -271,6 +271,11 @@ this.clickEventHandler= (args)=>{
 + Router related information or router object,  through this.props or props only available in the component which is loaded through ROUTER
 + If you want to access router info in any of the components, just wrap the component with withRouter higher component.
 
+## REDUX 
++ Redux is third party library , can be used for app state management in the application, through ReactJS it is very hard to manage the state if application grows  
++ [Redux Architecture](./materials/Redux-Flow.png)
++ Redux are user to update the application global state like userinfo(authenticated, usersession) and it shared across other application modules like Products and in products we can easily update the userinfo global state using REDUX 
+
 ## IMPORTANT LINKS 
 + [ReactJS Routing ](https://reacttraining.com/react-router/web/example/basic)
 
