@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import _ from 'lodash';
+
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import {BrowserRouter} from 'react-router-dom'
+
+console.log('LODASH', _);
 
 const app = (
     <BrowserRouter>
