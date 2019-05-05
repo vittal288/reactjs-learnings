@@ -11,13 +11,13 @@ class Persons extends Component {
     render () {
         return (
             <div>
-                <AddPerson personAdded={this.props.onPersonAddHandler} onPersonEnter={(event) => this.props.onPersonNameChangeHandler(event.target.value)}/>
-                {this.props.prsns.map(person => (
+                <AddPerson personAdded={(age,name) =>this.props.onPersonAddHandler(age,name)}/>
+                {this.props.prsns.map((person,index) => (
                     <Person 
                         key={person.id}
                         name={person.name} 
                         age={person.age} 
-                        clicked={() => this.props.onPersonDeleteHandler(person.id)}/>
+                        clicked={() => this.props.onPersonDeleteHandler(index)}/>
                 ))}
             </div>
         );
@@ -36,9 +36,8 @@ const mapStateToProps =(state)=>{
 //map returned dispatched action from reducer to local handlers to props
 const mapDispatchToProps = (dispatch)=>{
     return{
-        onPersonAddHandler: ()=>{dispatch({type: actionTypes.ADD_PERSON})},
-        onPersonDeleteHandler : (personIndex)=>{dispatch({type:actionTypes.DELETE_PERSON, index:personIndex})},
-        onPersonNameChangeHandler: (name)=>{dispatch({type:actionTypes.PERSON_NAME_ENTER, value:name})}
+        onPersonAddHandler: (age,name)=>{dispatch({type: actionTypes.ADD_PERSON, value:{age,name}})},
+        onPersonDeleteHandler : (index)=>{dispatch({type:actionTypes.DELETE_PERSON, index})}
     }
 }
 
