@@ -11,7 +11,7 @@ class Persons extends Component {
     render () {
         return (
             <div>
-                <AddPerson personAdded={(age,name) =>this.props.onPersonAddHandler(age,name)}/>
+                <AddPerson personAdded={this.props.onPersonAddHandler}/>
                 {this.props.prsns.map((person,index) => (
                     <Person 
                         key={person.id}
