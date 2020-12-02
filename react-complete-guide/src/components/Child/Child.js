@@ -103,6 +103,7 @@ class MyChildComponent extends Component {
         console.log('[Child.js] rendered()');
          return (
              <div className={classes.Child}>
+                <i className="fa fa-car"></i>
                 <button onClick={this.resetState}>Reset State</button>
                 <div>
                     <input type="checkbox" checked={this.state.myCheckBox} onChange={this.onChangeCheckBox.bind(this)} />
